@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="w-full h-full">
     <el-button @click="login">登录</el-button>
   </div>
 </template>
