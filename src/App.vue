@@ -8,16 +8,4 @@
 </script>
 
 <style>
-html,
-body {
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-}
-
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
 </style>
