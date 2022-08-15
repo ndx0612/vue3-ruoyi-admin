@@ -1,11 +1,23 @@
 <template>
-  <div>
-    <span>首页</span>
+  <div class="w-[100vw] h-[100vh]">
+    <router-view></router-view>
   </div>
 </template>
 
 <script setup>
 </script>
 
-<style lang="scss" scoped>
+<style>
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 </style>
