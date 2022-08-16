@@ -4,7 +4,7 @@ import './index.css'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import router from "./router/index"
-import axios from './http/index.js'
+import axios from './utils/axios.js'
 import myGlobalComponents from "./components/index" // components组件
 import * as ELIcons from "@element-plus/icons-vue"
 import util from "./utils/index"
