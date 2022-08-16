@@ -22,7 +22,6 @@
       </el-form>
       <div class="flex items-center justify-between">
         <el-checkbox v-model="form.saveInfo" label="记住账号密码" color="#7780A2" />
-        <!-- <el-link type="primary" :underline="false" @click="editPasswordForm=true">忘记密码</el-link> -->
       </div>
       <el-button class="w-full mt-[15px]" type="primary" size="large" @click="login(ruleFormRef)">登录</el-button>
     </div>
