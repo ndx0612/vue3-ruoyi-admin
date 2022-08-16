@@ -97,14 +97,11 @@ const login = (formEl) => {
   if (!formEl) return;
   formEl.validate((valid) => {
     if (valid) {
-      axios
-        .post(
-          "https://mockapi.eolink.com/RWG4jKY7a8d3c66906979840d6feb92494bd48bd8452ec4/login/login",
-          {
-            userName: form.loginName,
-            password: md5(form.password),
-          }
-        )
+      proxy.$axios
+        .post("/login/login", {
+          userName: form.loginName,
+          password: md5(form.password),
+        })
         .then((res) => {
           if (res.errCode == 0) {
             if (form.saveInfo) {
