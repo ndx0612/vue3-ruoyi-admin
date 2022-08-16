@@ -12,7 +12,7 @@
           </el-input>
         </el-form-item>
         <el-form-item class="mt-[20px]" prop="password">
-          <el-input v-model="form.password" class="h-[44px]" placeholder="密码" show-password type="password">
+          <el-input v-model="form.password" class="h-[44px]" placeholder="密码" show-password type="password" clearable v-on:keyup.enter="login(ruleFormRef)">
             <template #prefix>
               <img class=" flex items-center w-[24px] h-[24px] " src="@/assets/icon_code.png" alt="">
               <div class=" w-[1px] h-[26px] bg-slate-200 ml-[7px] mt-[2px]"></div>
