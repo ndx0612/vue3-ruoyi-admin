@@ -74,10 +74,7 @@ axios.interceptors.response.use(
        * 其他错误，直接抛出错误提示
        */
       default:
-        ElMessage({
-          message: response.data.errDesc,
-          type: "warning",
-        })
+        console.log('发送请求错误',response.data.errDesc);
     }
     return response.data
   },
