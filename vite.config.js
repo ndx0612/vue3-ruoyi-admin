@@ -17,7 +17,8 @@ export default defineConfig({
     cors: true, // 为开发服务器配置 CORS，配置为允许跨域
     proxy: {
       "/api": {
-        target: "http://wx.youxinedu.cn/supervise-backend-java", // 后台服务地址
+        // target: "http://wx.youxinedu.cn/supervise-backend-java", // 后台服务地址
+        target: "https://mockapi.eolink.com/RWG4jKY7a8d3c66906979840d6feb92494bd48bd8452ec4", // 后台服务地址
         changeOrigin: true, // 是否允许不同源
         secure: true, // 支持https
         rewrite: (path) => path.replace(/^\/api/, ""),
