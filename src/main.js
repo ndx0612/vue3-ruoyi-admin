@@ -7,7 +7,7 @@ import router from "./router/index"
 import axios from './utils/axios.js'
 import myGlobalComponents from "./components/index" // components组件
 import * as ELIcons from "@element-plus/icons-vue"
-import util from "./utils/index"
+import utils from "./utils/index"
 import { createPinia } from 'pinia'
 import directives from "./directives/index.js"
 import locale from 'element-plus/lib/locale/lang/zh-cn' //中文
@@ -19,9 +19,9 @@ const app = createApp(App)
 for (let iconName in ELIcons) {
   app.component(iconName, ELIcons[iconName])
 }
-app.config.globalProperties.$axios = axios; //配置axios的全局引用
+app.config.globalProperties.$axios = axios; //配置全局axios
 
-app.config.globalProperties.util = util; // 配置全局util函数(方法)
+app.config.globalProperties.utils = utils; // 配置全局util函数(方法)
 
 app.use(directives)
 app.use(router)

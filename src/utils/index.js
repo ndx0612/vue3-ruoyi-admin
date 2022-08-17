@@ -1,8 +1,10 @@
-import { deepClone } from "outils";
-import { onUnmounted, ref, isRef, unref, watch } from "vue"
+// PS:为了方便,将全局的方法挂载到proxy原型的全局上。
+// proxy.util.function()
+
 
 const SIGN_REGEXP = /([yMdhsm])(\1*)/g
 const DEFAULT_PATTERN = "yyyy-MM-dd"
+
 // 个位日期补0
 function padding(s, len) {
 	len = len - (s + "").length
@@ -14,11 +16,11 @@ function padding(s, len) {
 
 export default {
 	/**
- * @description: 时间戳转日期对象 默认当前日期
- * @param {number} date 时间戳
- * @param {string} pattern 时间格式
- * @return {*}
- */
+	 * @description: 时间戳转日期对象 默认当前日期
+	 * @param {number} date 时间戳
+	 * @param {string} pattern 时间格式
+	 * @return {*}
+	 */
 	formatDate(date, pattern) {
 		if (!date) {
 			return '-'
@@ -47,54 +49,51 @@ export default {
 			}
 		})
 	},
-
+	/**
+	 * @description: 深拷贝
+	 * @param {*} source 
+	 * @returns 
+	 */
+	deepClone(source) {
+		// 如果类型不是对象
+		if (typeof source != "object") {
+			return source;
+		}
+		// 如果为null
+		if (source == null) {
+			return source;
+		}
+		var newObj = (source.constructor === Array) ? [] : {}; //开辟一块新的内存空间
+		for (var i in source) {
+			newObj[i] = deepClone(source[i]);
+		}
+		return newObj;
+	},
 
 	/**
-	 * 
-	 * @description: 列表处理纯逻辑封装
-	 * @param {string} url 列表请求地址
-	 * @param {object} params 列表请求参数
-	 * @param {boolean} immediately 立马调用,注册时候就调用
-	 * @return {tableData, error, loading, total, getTableList}
+	 * @description: 重置一个对象的所有key的值
+	 * @param {Object} obj
+	 * @returns {Object}
 	 */
-	useTableList(url, params, immediately = true) {
-		const data = ref([])
-		const error = ref(null)
-		const total = ref(0)
-		const loading = ref(false)
-
-		function doRequest() {
-			// 在请求之前重设状态...
-			data.value = []
-			error.value = null
-			// unref() 解包可能为 ref 的值
-			loading.value = true
-			post(unref(url), _.cloneDeep(unref(params)))
-				.then((res) => {
-					console.log("res", res)
-					data.value = res?.data?.records || res?.records || []
-					total.value = res?.data?.total || res?.total || 0
-				})
-				.catch((err) => {
-					console.log("err", err)
-					error.value = err
-				})
-				.finally(() => {
-					loading.value = false
-				})
+	resetObject(obj) {
+		for (const item in obj) {
+			if (obj[item]) {
+				if (obj[item].constructor === Array) {
+					obj[item] = []
+				} else {
+					obj[item] = ""
+				}
+			}
 		}
-
-		if (immediately) doRequest()
-		var unwatch = watch(params, (newValue, oldValue) => {
-			doRequest()
-		})
-
-		// 页面卸载 销毁监听
-		onUnmounted(() => {
-			unwatch()
-		})
-
-		return { tableData: data, error, loading, total, getTableList: doRequest }
+		return obj
+	},
+	/**
+	 * @description:退出登录
+	 */
+	logOut() {
+		removeStorage("token")
+		setTimeout(() => {
+			router.push("/login")
+		}, 1000);
 	}
-
 }

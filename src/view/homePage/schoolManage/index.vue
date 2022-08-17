@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-button @click="aa">按钮</el-button>
+    <el-button @click="bb">按钮</el-button>
   </div>
 </template>
 
@@ -15,6 +16,9 @@ const aa = () => {
   proxy.$axios.get("/sysDictType/allDict").then((res) => {
     console.log(res);
   });
+};
+const bb = () => {
+  console.log(proxy.utils.formatDate(1660699413));
 };
 </script>
 

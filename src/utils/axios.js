@@ -53,7 +53,7 @@ axios.interceptors.response.use(
       // 其它错误
       default:
         console.log('发送请求错误', res.data.errDesc);
-        
+
     }
     return res.data
   },
