@@ -1,7 +1,7 @@
 <template>
   <!-- 左侧工具栏 -->
-  <div class="h-full flex">
-    <el-menu default-active="2" class="el-menu-vertical-demo h-full overflow-y-auto overflow-x-hidden" :collapse="isCollapse" @open="handleOpen" @close="handleClose">
+  <div class="h-full flex bg-[#efefef]">
+    <el-menu default-active="0" class="el-menu-vertical-demo h-full overflow-y-auto overflow-x-hidden" :collapse="isCollapse" :unique-opened="true" @open="handleOpen" @close="handleClose">
 
       <!-- 首页 -->
       <el-menu-item index="0">
@@ -19,11 +19,6 @@
           </el-icon>
           <span>系统管理</span>
         </template>
-        <el-menu-item index="1-1">
-          <template #title>
-            <span class="ml-[20px]">用户管理</span>
-          </template>
-        </el-menu-item>
         <el-menu-item index="1-2">
           <span class="ml-[20px]">用户管理</span>
         </el-menu-item>
@@ -42,12 +37,20 @@
       </el-sub-menu>
 
       <!-- 系统监控 -->
-      <el-menu-item index="2">
-        <el-icon>
-          <icon-menu />
-        </el-icon>
-        <template #title>系统监控</template>
-      </el-menu-item>
+      <el-sub-menu index="2">
+        <template #title>
+          <el-icon>
+            <Operation />
+          </el-icon>
+          <span>运营配置</span>
+        </template>
+        <el-menu-item index="2-2">
+          <span class="ml-[20px]">项目管理</span>
+        </el-menu-item>
+        <el-menu-item index="2-3">
+          <span class="ml-[20px]">合同管理</span>
+        </el-menu-item>
+      </el-sub-menu>
 
       <!-- 系统工具 -->
       <el-menu-item index="3">
@@ -60,7 +63,7 @@
       <!-- 若依官网 -->
       <el-menu-item index="4">
         <el-icon>
-            <location />
+          <location />
         </el-icon>
         <template #title>若依官网</template>
       </el-menu-item>
@@ -68,7 +71,7 @@
 
     <!-- 右边内容 -->
     <div>
-      <el-button @click="switchOnOff">显示/隐藏</el-button>
+      <el-button @click="switchCollapse">显示/隐藏</el-button>
     </div>
   </div>
 </template>
@@ -84,7 +87,10 @@ import {
 
 const isCollapse = ref(false);
 
-const switchOnOff = () => {
+/**
+ * @description: 折叠/展开菜单
+ */
+const switchCollapse = () => {
   isCollapse.value = !isCollapse.value;
 };
 
@@ -96,10 +102,19 @@ const handleClose = (key, keyPath) => {
 };
 </script>
 
-<style>
+<style lang="scss">
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
-  min-height: 400px;
-  height: 100%;
 }
+// .el-menu .el-menu--inline {
+//   span {
+//     color: #7c7f83;
+//   }
+// }
+
+// .el-menu-item .is-active .el-menu--inline{
+//   span {
+//     color: #409eff !important;
+//   }
+// }
 </style>
