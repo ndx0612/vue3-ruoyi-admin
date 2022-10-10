@@ -8,7 +8,6 @@ module.exports = {
       success: "#67C23A",
       danger: "#f56c6c",
       grey: "#909399",
-      default: "#303133",
     },
     screens: {
       1440: "1440px",
